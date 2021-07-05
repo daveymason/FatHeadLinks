@@ -21,16 +21,20 @@ class Fathead_Links_Widget extends WP_Widget {
 	public function widget( $args, $instance ) {
         $links = array(
             'facebook' => esc_attr($instance['facebook_link']),
-            'twitter' => esc_attr($instance['twitter_link']),
-            'linkedin' => esc_attr($instance['linkedin_link']),
+            'instagram' => esc_attr($instance['instagram_link']),
+            'deliveroo' => esc_attr($instance['deliveroo_link']),
+			'email' => esc_attr($instance['email_link']),
+            'phone' => esc_attr($instance['phone_link']),
         );
 
         $icons = array(
             'facebook' => esc_attr($instance['facebook_icon']),
-            'twitter' => esc_attr($instance['twitter_icon']),
-            'linkedin' => esc_attr($instance['linkedin_icon']),
+            'instagram' => esc_attr($instance['instagram_icon']),
+            'deliveroo' => esc_attr($instance['deliveroo_icon']),
+			'email' => esc_attr($instance['email_icon']),
+            'phone' => esc_attr($instance['phone_icon']),
 
-            'icon_width' => esc_attr($instance['linkedin_icon']),
+            'icon_width' => esc_attr($instance['deliveroo_icon']),
         );
 
         $icon_width=$instance['icon_width'];
@@ -66,12 +70,16 @@ class Fathead_Links_Widget extends WP_Widget {
         // Get the links from user
 		$instance = array(
             'facebook_link' => (!empty($new_instance['facebook_link'])) ? strip_tags($new_instance['facebook_link']) : '',
-            'twitter_link' => (!empty($new_instance['twitter_link'])) ? strip_tags($new_instance['twitter_link']) : '',
-            'linkedin_link' => (!empty($new_instance['linkedin_link'])) ? strip_tags($new_instance['linkedin_link']) : '',
+            'instagram_link' => (!empty($new_instance['instagram_link'])) ? strip_tags($new_instance['instagram_link']) : '',
+            'deliveroo_link' => (!empty($new_instance['deliveroo_link'])) ? strip_tags($new_instance['deliveroo_link']) : '',
+			'email_link' => (!empty($new_instance['email_link'])) ? strip_tags($new_instance['email_link']) : '',
+            'phone_link' => (!empty($new_instance['phone_link'])) ? strip_tags($new_instance['phone_link']) : '',
 
             'facebook_icon' => (!empty($new_instance['facebook_icon'])) ? strip_tags($new_instance['facebook_icon']) : '',
-            'twitter_icon' => (!empty($new_instance['twitter_icon'])) ? strip_tags($new_instance['twitter_icon']) : '',
-            'linkedin_icon' => (!empty($new_instance['linkedin_icon'])) ? strip_tags($new_instance['linkedin_icon']) : '',
+            'instagram_icon' => (!empty($new_instance['instagram_icon'])) ? strip_tags($new_instance['instagram_icon']) : '',
+            'deliveroo_icon' => (!empty($new_instance['deliveroo_icon'])) ? strip_tags($new_instance['deliveroo_icon']) : '',
+			'email_icon' => (!empty($new_instance['email_icon'])) ? strip_tags($new_instance['email_icon']) : '',
+            'phone_icon' => (!empty($new_instance['phone_icon'])) ? strip_tags($new_instance['phone_icon']) : '',
         
             'icon_width' => (!empty($new_instance['icon_width'])) ? strip_tags($new_instance['icon_width']) : ''
         );
@@ -92,16 +100,28 @@ class Fathead_Links_Widget extends WP_Widget {
            $facebook_link = 'https://www.facebook.com';
        }  
        
-       if(isset($instance['twitter_link'])){
-        $twitter_link = esc_attr($instance['twitter_link']);
+       if(isset($instance['instagram_link'])){
+        $instagram_link = esc_attr($instance['instagram_link']);
        } else {
-           $twitter_link = 'https://www.twitter.com';
+           $instagram_link = 'https://www.instagram.com';
        } 
 
-       if(isset($instance['linkedin_link'])){
-        $linkedin_link = esc_attr($instance['linkedin_link']);
+       if(isset($instance['deliveroo_link'])){
+        $deliveroo_link = esc_attr($instance['deliveroo_link']);
        } else {
-           $linkedin_link = 'https://www.linked.com';
+           $deliveroo_link = 'https://www.deliveroo.com';
+       } 
+
+	   if(isset($instance['email_link'])){
+        $email_link = esc_attr($instance['email_link']);
+       } else {
+           $email_link = 'mailto:info@osaka.ie';
+       } 
+
+	   if(isset($instance['phone_link'])){
+        $phone_link = esc_attr($instance['phone_link']);
+       } else {
+           $phone_link = 'tel:0214274317';
        } 
 
        //ICONS
@@ -112,17 +132,29 @@ class Fathead_Links_Widget extends WP_Widget {
            $facebook_icon = plugins_url() . '/fatheadlinks/img/facebook.png';
        }  
        
-       if(isset($instance['twitter_icon'])){
-        $twitter_icon = esc_attr($instance['twitter_icon']);
+       if(isset($instance['instagram_icon'])){
+        $instagram_icon = esc_attr($instance['instagram_icon']);
        } else {
-           $twitter_icon= plugins_url() . '/fatheadlinks/img/twitter.png';
+           $instagram_icon= plugins_url() . '/fatheadlinks/img/instagram.png';
        } 
 
-       if(isset($instance['linkedin_icon'])){
-        $linkedin_icon = esc_attr($instance['linkedin_icon']);
+       if(isset($instance['deliveroo_icon'])){
+        $deliveroo_icon = esc_attr($instance['deliveroo_icon']);
        } else {
-           $linkedin_icon = plugins_url() . '/fatheadlinks/img/linkedin.png';
+           $deliveroo_icon = plugins_url() . '/fatheadlinks/img/deliveroo.png';
        } 
+
+	   if(isset($instance['email_icon'])){
+        $email_icon = esc_attr($instance['email_icon']);
+       } else {
+           $email_icon = plugins_url() . '/fatheadlinks/img/email.png';
+       } 
+
+	   if(isset($instance['phone_icon'])){
+        $phone_icon = esc_attr($instance['phone_icon']);
+       } else {
+           $phone_icon = plugins_url() . '/fatheadlinks/img/phone.png';
+       }
 
        if(isset($instance['icon_width'])){
         $icon_width = esc_attr($instance['icon_width']);
@@ -141,24 +173,44 @@ class Fathead_Links_Widget extends WP_Widget {
 			<input class="widefat" id="<?php echo $this->get_field_id('facebook_icon'); ?>" name="<?php echo $this->get_field_name('facebook_icon'); ?>" type="text" value="<?php echo esc_attr( $facebook_icon); ?>">
 		</p>
 
-		<h4>Twitter</h4>
+		<h4>Instagram</h4>
 		<p>
-		<label for="<?php echo $this->get_field_id('twitter_link'); ?>"><?php _e('Link:'); ?></label> 
-			<input class="widefat" id="<?php echo $this->get_field_id('twitter_link'); ?>" name="<?php echo $this->get_field_name('twitter_link'); ?>" type="text" value="<?php echo esc_attr( $twitter_link); ?>">
+		<label for="<?php echo $this->get_field_id('instagram_link'); ?>"><?php _e('Link:'); ?></label> 
+			<input class="widefat" id="<?php echo $this->get_field_id('instagram_link'); ?>" name="<?php echo $this->get_field_name('instagram_link'); ?>" type="text" value="<?php echo esc_attr( $instagram_link); ?>">
 		</p>
 		<p>
-		<label for="<?php echo $this->get_field_id('twitter_icon'); ?>"><?php _e('Icon:'); ?></label> 
-			<input class="widefat" id="<?php echo $this->get_field_id('twitter_icon'); ?>" name="<?php echo $this->get_field_name('twitter_icon'); ?>" type="text" value="<?php echo esc_attr( $twitter_icon); ?>">
+		<label for="<?php echo $this->get_field_id('instagram_icon'); ?>"><?php _e('Icon:'); ?></label> 
+			<input class="widefat" id="<?php echo $this->get_field_id('instagram_icon'); ?>" name="<?php echo $this->get_field_name('instagram_icon'); ?>" type="text" value="<?php echo esc_attr( $instagram_icon); ?>">
 		</p>
 
-		<h4>LinkedIn</h4>
+		<h4>Deliveroo</h4>
 		<p>
-		<label for="<?php echo $this->get_field_id('linkedin_link'); ?>"><?php _e('Link:'); ?></label> 
-			<input class="widefat" id="<?php echo $this->get_field_id('linkedin_link'); ?>" name="<?php echo $this->get_field_name('linkedin_link'); ?>" type="text" value="<?php echo esc_attr( $linkedin_link); ?>">
+		<label for="<?php echo $this->get_field_id('deliveroo_link'); ?>"><?php _e('Link:'); ?></label> 
+			<input class="widefat" id="<?php echo $this->get_field_id('deliveroo_link'); ?>" name="<?php echo $this->get_field_name('deliveroo_link'); ?>" type="text" value="<?php echo esc_attr( $deliveroo_link); ?>">
 		</p>
 		<p>
-		<label for="<?php echo $this->get_field_id('linkedin_icon'); ?>"><?php _e('Icon:'); ?></label> 
-			<input class="widefat" id="<?php echo $this->get_field_id('linkedin_icon'); ?>" name="<?php echo $this->get_field_name('linkedin_icon'); ?>" type="text" value="<?php echo esc_attr( $linkedin_icon); ?>">
+		<label for="<?php echo $this->get_field_id('deliveroo_icon'); ?>"><?php _e('Icon:'); ?></label> 
+			<input class="widefat" id="<?php echo $this->get_field_id('deliveroo_icon'); ?>" name="<?php echo $this->get_field_name('deliveroo_icon'); ?>" type="text" value="<?php echo esc_attr( $deliveroo_icon); ?>">
+		</p>
+
+		<h4>E-mail</h4>
+		<p>
+		<label for="<?php echo $this->get_field_id('email_link'); ?>"><?php _e('Link:'); ?></label> 
+			<input class="widefat" id="<?php echo $this->get_field_id('email_link'); ?>" name="<?php echo $this->get_field_name('email_link'); ?>" type="text" value="<?php echo esc_attr( $email_link); ?>">
+		</p>
+		<p>
+		<label for="<?php echo $this->get_field_id('email_icon'); ?>"><?php _e('Icon:'); ?></label> 
+			<input class="widefat" id="<?php echo $this->get_field_id('email_icon'); ?>" name="<?php echo $this->get_field_name('email_icon'); ?>" type="text" value="<?php echo esc_attr( $email_icon); ?>">
+		</p>
+
+		<h4>Phone</h4>
+		<p>
+		<label for="<?php echo $this->get_field_id('phone_link'); ?>"><?php _e('Link:'); ?></label> 
+			<input class="widefat" id="<?php echo $this->get_field_id('phone_link'); ?>" name="<?php echo $this->get_field_name('phone_link'); ?>" type="text" value="<?php echo esc_attr( $phone_link); ?>">
+		</p>
+		<p>
+		<label for="<?php echo $this->get_field_id('phone_icon'); ?>"><?php _e('Icon:'); ?></label> 
+			<input class="widefat" id="<?php echo $this->get_field_id('phone_icon'); ?>" name="<?php echo $this->get_field_name('phone_icon'); ?>" type="text" value="<?php echo esc_attr( $phone_icon); ?>">
 		</p>
 
         <p>
@@ -180,10 +232,12 @@ class Fathead_Links_Widget extends WP_Widget {
 		//learn why it was pulling social
        ?>
             <div class="fatheadlinks">
-            <a target="_blank" href="<?php echo esc_attr($links['facebook']); ?>"><img width="<?php echo esc_attr($icon_width); ?>" src="<?php echo esc_attr($icons['facebook']); ?>"></a>
-				<a target="_blank" href="<?php echo esc_attr($links['twitter']); ?>"><img width="<?php echo esc_attr($icon_width); ?>" src="<?php echo esc_attr($icons['twitter']); ?>"></a>
-				<a target="_blank" href="<?php echo esc_attr($links['linkedin']); ?>"><img width="<?php echo esc_attr($icon_width); ?>" src="<?php echo esc_attr($icons['linkedin']); ?>"></a>
-            </div>
+				<a target="_blank" href="<?php echo esc_attr($links['facebook']); ?>"><img width="<?php echo esc_attr($icon_width); ?>" src="<?php echo esc_attr($icons['facebook']); ?>"></a>
+				<a target="_blank" href="<?php echo esc_attr($links['instagram']); ?>"><img width="<?php echo esc_attr($icon_width); ?>" src="<?php echo esc_attr($icons['instagram']); ?>"></a>
+				<a target="_blank" href="<?php echo esc_attr($links['deliveroo']); ?>"><img width="<?php echo esc_attr($icon_width); ?>" src="<?php echo esc_attr($icons['deliveroo']); ?>"></a>
+				<a target="_blank" href="<?php echo esc_attr($links['email']); ?>"><img width="<?php echo esc_attr($icon_width); ?>" src="<?php echo esc_attr($icons['email']); ?>"></a>
+				<a target="_blank" href="<?php echo esc_attr($links['phone']); ?>"><img width="<?php echo esc_attr($icon_width); ?>" src="<?php echo esc_attr($icons['phone']); ?>"></a>
+			</div>
         <?php
     }
 }
