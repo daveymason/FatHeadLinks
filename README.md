@@ -1,2 +1,2 @@
 # FatHeadLinks
- Display Social Media links on your Wordpress
+ Display an image and links on your Wordpress site in any widget area. 
